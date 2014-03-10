@@ -1,0 +1,373 @@
+*,:after,::before {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box
+}
+
+@font-face {
+	font-weight: 400;
+	font-style: normal;
+	font-family: ecoicons;
+	src: url(../fonts/ecoicons/ecoicons.eot);
+	src: url(../fonts/ecoicons/ecoicons.eot?#iefix)
+		format("embedded-opentype"), url(../fonts/ecoicons/ecoicons.woff)
+		format("woff"), url(../fonts/ecoicons/ecoicons.ttf) format("truetype"),
+		url(../fonts/ecoicons/ecoicons.svg#ecoicons) format("svg")
+}
+
+.my-menu-main,.my-menu-main ul {
+	margin: 0;
+	padding: 0;
+	background: #2f2f2f;
+	color: #fff;
+	list-style: none;
+	text-transform: none;
+	font-weight: 300;
+	font-family: Lato, Arial, sans-serif;
+	line-height: 60px
+}
+
+.my-menu-main {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 60px;
+	font-size: 13px;
+	z-index: 1
+}
+
+.my-menu-main a {
+	display: block;
+	height: 100%;
+	color: #fff;
+	text-decoration: none;
+	cursor: pointer
+}
+
+.no-touch .my-menu-main a:hover,.no-touch .my-menu li.my-search-item:hover,.no-touch .my-menu li.my-search-item:hover a
+	{
+	background: #8e7557;
+	color: #fff
+}
+
+.my-menu-main>li {
+	display: block;
+	float: left;
+	height: 100%;
+	border-right: 1px solid #555;
+	text-align: center
+}
+
+.my-menu-main li.my-trigger {
+	float:left !important;
+	position: relative;
+	width: 60px;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none
+}
+
+.my-menu-main>li:last-child {
+	float: right;
+	border-right: 0;
+	border-left: 1px solid #555
+}
+
+.my-menu-main>li>a {
+	padding: 0 30px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: 700
+}
+
+.my-menu-main:after {
+	display: table;
+	clear: both;
+	content: ""
+}
+
+.my-menu-wrapper {
+	position: fixed;
+	top: 60px;
+	bottom: 0;
+	left: 0;
+	overflow: hidden;
+	width: 60px;
+	border-top: 1px solid #555;
+	background: #2f2f2f;
+	-webkit-transform: translateX(-60px);
+	-moz-transform: translateX(-60px);
+	transform: translateX(-60px);
+	-webkit-transition: -webkit-transform .3s, width .3s;
+	-moz-transition: -moz-transform .3s, width .3s;
+	transition: transform .3s, width .3s
+}
+
+.my-scroller {
+	position: absolute;
+	overflow-y: scroll;
+	width: 370px;
+	height: 100%
+}
+
+.my-menu {
+	border-bottom: 1px solid #555;
+	text-align: left;
+	font-size: 18px
+}
+
+.my-menu li:not (:first-child ),.my-menu li li {
+	box-shadow: inset 0 1px #555
+}
+
+.my-submenu li {
+	overflow: hidden;
+	height: 0;
+	-webkit-transition: height .3s;
+	-moz-transition: height .3s;
+	transition: height .3s
+}
+
+.my-submenu li a {
+	color: #555
+}
+
+input.my-search {
+	position: relative;
+	z-index: 10;
+	padding-left: 60px;
+	outline: 0;
+	border: 0;
+	background: transparent;
+	color: #fff;
+	font-weight: 300;
+	font-family: Lato, Arial, sans-serif;
+	cursor: pointer
+}
+
+.my-search::-webkit-input-placeholder {
+	color: #fff
+}
+
+.my-search:-moz-placeholder {
+	color: #fff
+}
+
+.my-search::-moz-placeholder {
+	color: #fff
+}
+
+.my-search:-ms-input-placeholder {
+	color: #fff
+}
+
+.my-search:focus::-webkit-input-placeholder,.no-touch .my-menu li.my-search-item:hover .my-search:focus::-webkit-input-placeholder
+	{
+	color: transparent
+}
+
+input.my-search:focus {
+	cursor: text
+}
+
+.no-touch .my-menu li.my-search-item:hover input.my-search {
+	color: #fff
+}
+
+.no-touch .my-menu li.my-search-item:hover .my-search::-webkit-input-placeholder
+	{
+	color: #fff
+}
+
+.no-touch .my-menu li.my-search-item:hover .my-search:-moz-placeholder {
+	color: #fff
+}
+
+.no-touch .my-menu li.my-search-item:hover .my-search::-moz-placeholder
+	{
+	color: #fff
+}
+
+.no-touch .my-menu li.my-search-item:hover .my-search:-ms-input-placeholder
+	{
+	color: #fff
+}
+
+.my-menu-main a.my-icon-search {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 60px
+}
+
+.my-icon::before {
+	display: inline-block;
+	width: 60px;
+	text-align: center;
+	text-transform: none;
+	font-weight: 400;
+	font-style: normal;
+	font-variant: normal;
+	font-family: ecoicons;
+	line-height: 1;
+	speak: none;
+	-webkit-font-smoothing: antialiased
+}
+
+.my-icon-help::before {
+	content: "\e000"
+}
+
+.my-icon-earth::before {
+	content: "\e004"
+}
+
+.my-icon-cog::before {
+	content: "\e006"
+}
+
+.my-icon-search::before {
+	content: "\e005"
+}
+
+.my-icon-download::before {
+	content: "\e007"
+}
+
+.my-icon-photoshop::before {
+	content: "\e001"
+}
+
+.my-icon-illustrator::before {
+	content: "\e002"
+}
+
+.my-icon-archive::before {
+	content: "\e00d"
+}
+
+.my-icon-article::before {
+	content: "\e003"
+}
+
+.my-icon-pictures::before {
+	content: "\e008"
+}
+
+.my-icon-videos::before {
+	content: "\e009"
+}
+
+.my-icon-home::before {
+	content: "\e00a"
+}
+
+.my-icon-newspaper::before {
+	content: "\e00b"
+}
+
+.my-icon-pencil::before {
+	content: "\e00c"
+}
+
+.my-icon-droplet::before {
+	content: "\e00e"
+}
+
+.my-icon-camera::before {
+	content: "\e00f"
+}
+
+.my-icon-file::before {
+	content: "\e010"
+}
+
+.my-icon-envelop::before {
+	content: "\e011"
+}
+
+.my-icon-screen::before {
+	content: "\e012"
+}
+
+.my-icon-mobile::before {
+	content: "\e013"
+}
+
+.my-icon-laptop::before {
+	content: "\e014"
+}
+
+.my-icon-clock::before {
+	content: "\e015"
+}
+
+.my-icon-fire::before {
+	content: "\e016"
+}
+
+.my-icon-lab::before {
+	content: "\e017"
+}
+
+.my-icon-bars::before {
+	content: "\e018"
+}
+
+.my-icon span {
+	width: 0;
+	height: 0;
+	display: block;
+	overflow: hidden
+}
+
+.my-icon-menu::before {
+	margin-left: -15px;
+	vertical-align: -2px;
+	width: 30px;
+	height: 3px;
+	background: #fff;
+	box-shadow: 0 3px #2f2f2f, 0 -6px white, 0 -9px #2f2f2f, 0 -12px #fff;
+	content: ''
+}
+
+.no-touch .my-icon-menu:hover::before,.no-touch .my-icon-menu.my-selected:hover::before
+	{
+	background: #fff;
+	box-shadow: 0 3px #8e7557, 0 -6px white, 0 -9px #8e7557, 0 -12px #fff
+}
+
+.my-icon-menu.my-selected::before {
+	background: #fff;
+	box-shadow: 0 3px #2f2f2f, 0 -6px white, 0 -9px #2f2f2f, 0 -12px #fff
+}
+
+.my-menu-wrapper.my-open-all,.my-menu-wrapper.my-open-part {
+	-webkit-transform: translateX(0px);
+	-moz-transform: translateX(0px);
+	transform: translateX(0px)
+}
+
+.my-menu-wrapper.my-open-all {
+	width: 340px
+}
+
+.my-menu-wrapper.my-open-all .my-submenu li {
+	height: 60px
+}
+
+@media screen and (max-width:422px) {
+	.my-menu-wrapper.my-open-all {
+		-webkit-transform: translateX(0px);
+		-moz-transform: translateX(0px);
+		transform: translateX(0px);
+		width: 100%
+	}
+	.my-menu-wrapper.my-open-all .my-scroller {
+		width: 130%
+	}
+}

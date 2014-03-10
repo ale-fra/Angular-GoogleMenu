@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" class=" js no-touch" style="" ng-app="App">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="description" content="Porting gn-menu to Angularjs">
+<meta name="author" content="Alessandro Francia">
+
+<title>Porting gn-menu to Angularjs</title>
+
+<link rel="stylesheet" type="text/css" href="./component.css">
+</head>
+
+<body ng-controller="topMenuController" style="height: 924px;">
+	<!-- ========== MAIN MENU ========== -->
+	<div class="container" >
+		<ul id="my-menu" class="my-menu-main">
+			<li class="my-trigger"  ng-click="menuTogle($event)" ng-mouseenter="mouseenter()" ng-mouseleave="mouseleave()"><a class="my-icon my-icon-menu"><span>Menu</span></a>
+				 <nav ng-mouseenter="menuHover($event)" class="my-menu-wrapper" ng-class="{'my-open-part' : showPart,'my-open-all' : showAll}"  ng-show="true">
+					<div class="my-scroller">
+						<ul class="my-menu">
+							<li ng-repeat="item in itemsMenu" ><a href="{{item.href}}" class="my-icon {{item.icon}} ">{{ item.name }}</a></li>
+						</ul>
+					</div><!-- /my-scroller -->
+				</nav></li>
+		</ul>
+	</div>
+	<!-- /container -->
+
+<div style="height: 100%;width: 100%;background-color: yellow;">
+<p style="padding-top: 100px;margin-left: 100px;">
+<a href="{{href}}" target="_blank">{{text}}</a></p>
+</div>
+
+
+	
+	<script src="./angular.min.js"></script>
+	<script src="./app.js"></script>
+	
+
+
+</body>
+</html>
