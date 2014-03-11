@@ -75,16 +75,13 @@ var App = angular.module('App', [])
 			function closeMenu() {
 				$scope.showAll = false;
 				$scope.$window.onclick = null;
-
 			}
 			
 			$scope.$on('MenuService.update', function(event, open) {
 				$scope.showAll = open.all;
 				$scope.showPart = open.part;
 			});
-
 		} ])
-		
 .controller('contentBodyController',
 [ 'MenuService', '$scope', function(MenuService, $scope) {
 	$scope.isMenuClosed = !MenuService.open.all;
