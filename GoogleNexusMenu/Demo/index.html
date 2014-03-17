@@ -17,8 +17,8 @@
 	<!-- ========== MAIN MENU ========== -->
 	<header ng-controller="topMenuController"  >
 		<ul id="my-menu" class="my-menu-main">
-			<li class="my-trigger"  ng-click="menuTogle($event)" ng-mouseenter="mouseenter()" ng-mouseleave="mouseleave()"><a id="triggerMenu" class="fa fa-3x fa-bars" ng-class="{'active':showAll}"></a>
-				 <nav ng-mouseenter="menuHover($event)" class="my-menu-wrapper" ng-class="{'my-open-part' : showPart,'my-open-all' : showAll}" >
+			<li class="my-trigger"  ng-click="menuTogle($event)" ng-mouseenter="showAll || mouseenter()" ng-mouseleave="showAll || mouseleave()"><a id="triggerMenu" class="fa fa-3x fa-bars" ng-class="{'active':showAll}"></a>
+				 <nav ng-mouseenter="showAll|| menuHover($event)" class="my-menu-wrapper" ng-class="{'my-open-part' : showPart,'my-open-all' : showAll}" >
 					<div class="my-scroller">
 						<ul class="my-menu">
 							<li ng-repeat="item in itemsMenu" ng-mouseenter="showChildren = true" ng-mouseleave="showChildren = false" ng-model="showChildren" ng-class="{'my-submenu-open': showChildren}" >

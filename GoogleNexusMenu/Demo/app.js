@@ -68,17 +68,14 @@ var App = angular.module('App', [])
 			$scope.showPart = MenuService.open.part;
 
 			$scope.mouseenter = function() {
-				if (!$scope.showAll)
 					MenuService.setShowPart(true);
 			};
 
 			$scope.mouseleave = function() {
-				if (!$scope.showAll)
 					MenuService.setShowPart(false);
 			};
 
 			$scope.menuHover = function(event) {
-				if ($scope.showPart == true)
 					MenuService.setShowAll(true);
 			}
 
