@@ -1,0 +1,35 @@
+body,html {
+	margin: 0;
+}
+
+body,html,.content-body {
+	height: 100%;
+}
+
+header {
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+	min-width: 320px;
+	height: 60px;
+	background: white;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	max-width: 100%;
+	border-bottom: 1px solid #e1e4e6;
+}
+
+.icon-menu {
+	width: 20px;
+	margin-right: 22px;
+	margin-left: 22px;
+}
+.my-submenu-open .my-submenu .icon-menu {
+		margin-left: 0;
+}
+
+.float-right-icon {
+	margin-right: 25px;
+	margin-top: 22px;
+	float: right;
+}

@@ -4,22 +4,11 @@
 	box-sizing: border-box
 }
 
-@font-face {
-	font-weight: 400;
-	font-style: normal;
-	font-family: ecoicons;
-	src: url(../fonts/ecoicons/ecoicons.eot);
-	src: url(../fonts/ecoicons/ecoicons.eot?#iefix)
-		format("embedded-opentype"), url(../fonts/ecoicons/ecoicons.woff)
-		format("woff"), url(../fonts/ecoicons/ecoicons.ttf) format("truetype"),
-		url(../fonts/ecoicons/ecoicons.svg#ecoicons) format("svg")
-}
-
 .my-menu-main,.my-menu-main ul {
 	margin: 0;
 	padding: 0;
-	background: #2f2f2f;
-	color: #fff;
+	background: white;
+	color: #5b6064;
 	list-style: none;
 	text-transform: none;
 	font-weight: 300;
@@ -40,14 +29,14 @@
 .my-menu-main a {
 	display: block;
 	height: 100%;
-	color: #fff;
+	color: #5b6064;
 	text-decoration: none;
 	cursor: pointer
 }
 
-.no-touch .my-menu-main a:hover,.no-touch .my-menu li.my-search-item:hover,.no-touch .my-menu li.my-search-item:hover a
+.no-touch .my-menu-main a:hover,.no-touch .my-menu li.my-search-item:hover,.no-touch .my-menu li.my-search-item:hover a,.no-touch .my-menu-main a:hover i
 	{
-	background: #8e7557;
+	background: #5b6064;
 	color: #fff
 }
 
@@ -60,7 +49,7 @@
 }
 
 .my-menu-main li.my-trigger {
-	float:left !important;
+	float: left !important;
 	position: relative;
 	width: 60px;
 	-webkit-touch-callout: none;
@@ -78,7 +67,7 @@
 }
 
 .my-menu-main>li>a {
-	padding: 0 30px;
+	padding: 10px 0;
 	text-transform: uppercase;
 	letter-spacing: 1px;
 	font-weight: 700
@@ -90,6 +79,10 @@
 	content: ""
 }
 
+.my-scroller li a {
+	border-bottom: 1px solid #e1e4e6;
+}
+
 .my-menu-wrapper {
 	position: fixed;
 	top: 60px;
@@ -97,8 +90,9 @@
 	left: 0;
 	overflow: hidden;
 	width: 60px;
-	border-top: 1px solid #555;
-	background: #2f2f2f;
+	border-top: 1px solid #e1e4e6;
+	border-right: 1px solid #e1e4e6;
+	background: white;
 	-webkit-transform: translateX(-60px);
 	-moz-transform: translateX(-60px);
 	transform: translateX(-60px);
@@ -115,7 +109,6 @@
 }
 
 .my-menu {
-	border-bottom: 1px solid #555;
 	text-align: left;
 	font-size: 18px
 }
@@ -129,7 +122,8 @@
 	height: 0;
 	-webkit-transition: height .3s;
 	-moz-transition: height .3s;
-	transition: height .3s
+	transition: height .3s;
+	border: 0
 }
 
 .my-submenu li a {
@@ -204,119 +198,6 @@ input.my-search:focus {
 	height: 60px
 }
 
-.my-icon::before {
-	display: inline-block;
-	width: 60px;
-	text-align: center;
-	text-transform: none;
-	font-weight: 400;
-	font-style: normal;
-	font-variant: normal;
-	font-family: ecoicons;
-	line-height: 1;
-	speak: none;
-	-webkit-font-smoothing: antialiased
-}
-
-.my-icon-help::before {
-	content: "\e000"
-}
-
-.my-icon-earth::before {
-	content: "\e004"
-}
-
-.my-icon-cog::before {
-	content: "\e006"
-}
-
-.my-icon-search::before {
-	content: "\e005"
-}
-
-.my-icon-download::before {
-	content: "\e007"
-}
-
-.my-icon-photoshop::before {
-	content: "\e001"
-}
-
-.my-icon-illustrator::before {
-	content: "\e002"
-}
-
-.my-icon-archive::before {
-	content: "\e00d"
-}
-
-.my-icon-article::before {
-	content: "\e003"
-}
-
-.my-icon-pictures::before {
-	content: "\e008"
-}
-
-.my-icon-videos::before {
-	content: "\e009"
-}
-
-.my-icon-home::before {
-	content: "\e00a"
-}
-
-.my-icon-newspaper::before {
-	content: "\e00b"
-}
-
-.my-icon-pencil::before {
-	content: "\e00c"
-}
-
-.my-icon-droplet::before {
-	content: "\e00e"
-}
-
-.my-icon-camera::before {
-	content: "\e00f"
-}
-
-.my-icon-file::before {
-	content: "\e010"
-}
-
-.my-icon-envelop::before {
-	content: "\e011"
-}
-
-.my-icon-screen::before {
-	content: "\e012"
-}
-
-.my-icon-mobile::before {
-	content: "\e013"
-}
-
-.my-icon-laptop::before {
-	content: "\e014"
-}
-
-.my-icon-clock::before {
-	content: "\e015"
-}
-
-.my-icon-fire::before {
-	content: "\e016"
-}
-
-.my-icon-lab::before {
-	content: "\e017"
-}
-
-.my-icon-bars::before {
-	content: "\e018"
-}
 
 .my-icon span {
 	width: 0;
@@ -356,8 +237,30 @@ input.my-search:focus {
 	width: 340px
 }
 
-.my-menu-wrapper.my-open-all .my-submenu li {
-	height: 60px
+.my-submenu-open li {
+	padding-left: 0;
+	height: 45px;
+}
+
+.my-submenu-open li a {
+	padding-left: 45px;
+	border-bottom: 1px solid #e1e4e6 !important;
+	line-height: 45px;
+}
+
+.my-submenu-open li:hover {
+	height: 60px;
+}
+
+.my-submenu-open li:hover a {
+	line-height: 60px;
+}
+
+.my-trigger {
+	border-right: 1px solid #e1e4e6 !important;
+}
+.my-trigger .active{
+	color:#00b3e4
 }
 
 @media screen and (max-width:422px) {

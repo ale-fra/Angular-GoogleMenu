@@ -8,29 +8,40 @@
 
 <title>Porting gn-menu to Angularjs</title>
 
-<link rel="stylesheet" type="text/css" href="./component.css">
-<link rel="stylesheet" type="text/css" href="./main.css">
+<link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css"/>
+<link rel="stylesheet" type="text/css" href="./css/component.css">
+<link rel="stylesheet" type="text/css" href="./css/main.css">
 </head>
 
 <body>
 	<!-- ========== MAIN MENU ========== -->
 	<header ng-controller="topMenuController"  >
 		<ul id="my-menu" class="my-menu-main">
-			<li class="my-trigger"  ng-click="menuTogle($event)" ng-mouseenter="mouseenter()" ng-mouseleave="mouseleave()"><a class="my-icon my-icon-menu"><span>Menu</span></a>
+			<li class="my-trigger"  ng-click="menuTogle($event)" ng-mouseenter="mouseenter()" ng-mouseleave="mouseleave()"><a id="triggerMenu" class="fa fa-3x fa-bars" ng-class="{'active':showAll}"></a>
 				 <nav ng-mouseenter="menuHover($event)" class="my-menu-wrapper" ng-class="{'my-open-part' : showPart,'my-open-all' : showAll}" >
 					<div class="my-scroller">
 						<ul class="my-menu">
-							<li ng-repeat="item in itemsMenu" ><a href="{{item.href}}" class="my-icon {{item.icon}} ">{{ item.name }}</a></li>
+							<li ng-repeat="item in itemsMenu" ng-mouseenter="showChildren = true" ng-mouseleave="showChildren = false" ng-model="showChildren" ng-class="{'my-submenu-open': showChildren}" >
+							<a href="{{item.href}}"><i class="icon-menu fa {{item.icon}}"></i>{{ item.name }} <i ng-show="item.children.length>0" class="fa fa-angle-double-down float-right-icon"></i> </a>
+							
+							<ul  ng-show="item.children.length>0" class="my-submenu">
+								<li ng-repeat="item in item.children" class="test">
+									<a href="{{item.href}}"><i class="icon-menu fa {{item.icon}}"></i>{{ item.name }}</a>
+								</li>
+							</ul>
 						</ul>
 					</div><!-- /my-scroller -->
-				</nav></li>
+				</nav>
+			</li>
+			
+			<li>Chat</li>
 		</ul>
 	</header>
 	<!-- /container -->
 
  
 	<div class="content-body" ng-controller="contentBodyController" ng-click=" isMenuClosed  || closeMenu() " >
-		<div style="height: 50%; width: 50%; background-color: yellow;">
+		<div style="height: 100%; width: 100%; background-color: yellow;">
 				<a style="padding-top: 100px; margin-left: 100px;" href="{{href}}" target="_blank">{{text}}</a>
 		</div>
 	</div>

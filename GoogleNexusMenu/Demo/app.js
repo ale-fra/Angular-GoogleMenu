@@ -5,30 +5,47 @@ var App = angular.module('App', [])
 		itemsMenu : [ {
 			name : 'Home',
 			href : '#home',
-			icon : 'my-icon-home'
+			icon : 'fa-home'
 		}, {
 			name : 'Setting',
 			href : '#setting',
-			icon : 'my-icon-archive'
+			icon : 'fa-cogs'
 		}, {
 			name : 'Portfolio',
 			href : '#portfolio',
-			icon : 'my-icon-pictures'
+			icon : 'fa-desktop',
+			children : [ {
+				name : 'child 1',
+				href : '#child_1',
+				icon : 'fa-sort-amount-asc'
+			}, {
+				name : 'child 2',
+				href : '#child_2',
+				icon : 'fa-sort-amount-asc'
+			} ]
 		}, {
 			name : 'Blog',
 			href : '#blog',
-			icon : 'my-icon-article'
-		}, {
+			icon : 'fa-book'
+			}, {
 			name : 'Prices',
 			href : '#prices',
-			icon : 'my-icon-bars'
+			icon : 'fa-eur',
+			children : [ {
+				name : 'child 3',
+				href : '#child_3',
+				icon : 'fa-sort-amount-asc'
+			}, {
+				name : 'child 4',
+				href : '#child_4',
+				icon : 'fa-sort-amount-asc'
+			} ]
 		} ],
 
-		add : function(item) {
-			this.menu.push(item);
-			$rootScope.$broadcast('MenuService.update', this.menu);
+		open : {
+			"part" : false,
+			"all" : false
 		},
-		open : {"part" : false ,	"all" : false },
 
 		setShowPart : function(val) {
 			this.open.part = val;
@@ -45,8 +62,7 @@ var App = angular.module('App', [])
 	};
 } ])
 
-.controller('topMenuController',
-		[ 'MenuService', '$scope', function(MenuService, $scope) {
+.controller('topMenuController',[ 'MenuService', '$scope', function(MenuService, $scope) {
 			$scope.itemsMenu = MenuService.itemsMenu;
 			$scope.showAll = MenuService.open.all;
 			$scope.showPart = MenuService.open.part;
@@ -63,36 +79,42 @@ var App = angular.module('App', [])
 
 			$scope.menuHover = function(event) {
 				if ($scope.showPart == true)
-					$scope.menuTogle(event);
+					MenuService.setShowAll(true);
 			}
 
-			
 			$scope.menuTogle = function(event) {
+				if(event.target.id != "triggerMenu")
+					return;
 				event.stopPropagation();
-				MenuService.setShowAll(true);
+				MenuService.setShowAll(!$scope.showAll);
 			};
 
-			function closeMenu() {
-				$scope.showAll = false;
-				$scope.$window.onclick = null;
-			}
-			
 			$scope.$on('MenuService.update', function(event, open) {
 				$scope.showAll = open.all;
 				$scope.showPart = open.part;
 			});
 		} ])
-.controller('contentBodyController',
-[ 'MenuService', '$scope', function(MenuService, $scope) {
-	$scope.isMenuClosed = !MenuService.open.all;
+		.controller('contentBodyController',[ 'MenuService', '$scope', function(MenuService, $scope) {
+			$scope.isMenuClosed = !MenuService.open.all;
 
-	$scope.closeMenu = function() {
-			MenuService.setShowAll(false);
-	};
-	
-	$scope.$on('MenuService.update', function(event, open) {
-		$scope.isMenuClosed = !open.all;
-	});
+			$scope.closeMenu = function() {
+				MenuService.setShowAll(false);
+			};
+
+			$scope.$on('MenuService.update', function(event, open) {
+				$scope.isMenuClosed = !open.all;
+			});
+
+		} ]);
 
 
-} ]);
+/*
+ 
+ 
+var aa= {};
+for(i=0;i < MenuService.itemsMenu.length;i++){
+   console.log(i);
+   aa[MenuService.itemsMenu[i].href]= {icon:MenuService.itemsMenu[i].icon};
+}
+
+*/
