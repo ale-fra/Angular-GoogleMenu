@@ -52,6 +52,8 @@
 	float: left !important;
 	position: relative;
 	width: 60px;
+}
+.my-menu-main li{
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
 	-khtml-user-select: none;
@@ -67,7 +69,7 @@
 }
 
 .my-menu-main>li>a {
-	padding: 10px 0;
+	padding: 10px 10px;
 	text-transform: uppercase;
 	letter-spacing: 1px;
 	font-weight: 700
@@ -113,10 +115,6 @@
 	font-size: 18px
 }
 
-.my-menu li:not (:first-child ),.my-menu li li {
-	box-shadow: inset 0 1px #555
-}
-
 .my-submenu li {
 	overflow: hidden;
 	height: 0;
@@ -143,51 +141,11 @@ input.my-search {
 	cursor: pointer
 }
 
-.my-search::-webkit-input-placeholder {
-	color: #fff
-}
-
-.my-search:-moz-placeholder {
-	color: #fff
-}
-
-.my-search::-moz-placeholder {
-	color: #fff
-}
-
-.my-search:-ms-input-placeholder {
-	color: #fff
-}
-
-.my-search:focus::-webkit-input-placeholder,.no-touch .my-menu li.my-search-item:hover .my-search:focus::-webkit-input-placeholder
-	{
-	color: transparent
-}
-
 input.my-search:focus {
 	cursor: text
 }
 
 .no-touch .my-menu li.my-search-item:hover input.my-search {
-	color: #fff
-}
-
-.no-touch .my-menu li.my-search-item:hover .my-search::-webkit-input-placeholder
-	{
-	color: #fff
-}
-
-.no-touch .my-menu li.my-search-item:hover .my-search:-moz-placeholder {
-	color: #fff
-}
-
-.no-touch .my-menu li.my-search-item:hover .my-search::-moz-placeholder
-	{
-	color: #fff
-}
-
-.no-touch .my-menu li.my-search-item:hover .my-search:-ms-input-placeholder
-	{
 	color: #fff
 }
 

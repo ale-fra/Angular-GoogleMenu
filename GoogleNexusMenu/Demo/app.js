@@ -44,13 +44,13 @@ var App = angular.module('App', [])
 
 		open : {
 			"part" : false,
-			"all" : false
+			"all" : false,
+			"chatSideClosed":false
 		},
 
 		setShowPart : function(val) {
 			this.open.part = val;
 			$rootScope.$broadcast('MenuService.update', this.open);
-
 		},
 		setShowAll : function(val) {
 			this.open.all = val;
@@ -58,51 +58,94 @@ var App = angular.module('App', [])
 				this.open.part = false;
 			$rootScope.$broadcast('MenuService.update', this.open);
 
+		},
+		setChatSide:function(val) {
+			this.open.chatSideClosed = val;
+			$rootScope.$broadcast('MenuService.chatChangedState', this.open);
 		}
 	};
-} ])
+}])
+.controller('contentBodyController',[ 'MenuService', '$scope', function(MenuService, $scope) {
+	$scope.isMenuClosed = !MenuService.open.all;
 
-.controller('topMenuController',[ 'MenuService', '$scope', function(MenuService, $scope) {
-			$scope.itemsMenu = MenuService.itemsMenu;
-			$scope.showAll = MenuService.open.all;
-			$scope.showPart = MenuService.open.part;
+	$scope.closeMenu = function() {
+		MenuService.setShowAll(false);
+	};
 
-			$scope.mouseenter = function() {
-					MenuService.setShowPart(true);
-			};
+	$scope.$on('MenuService.update', function(event, open) {
+		$scope.isMenuClosed = !open.all;
+	});
+	return $scope;
+}])
+.controller('chatController',[ 'MenuService', '$scope', function(MenuService, $scope) {
+	$scope.title= "Chat";
+	$scope.userImage ="./img/defaultPhoto.png"
+	$scope.chatSide = !MenuService.open.chatSide;
 
-			$scope.mouseleave = function() {
-					MenuService.setShowPart(false);
-			};
+	$scope.chatSideChangeState= function(){
+		MenuService.setChatSide(!$scope.chatSide);
+	},
+	
+	$scope.$on('MenuService.chatChangedState', function(event, open) {
+		$scope.chatSide = open.chatSideClosed;
+	});
+	return $scope;
+}])
+.directive('leftMenu',function(MenuService){
+  return {
+    restrict : 'A',
+    template: '<li class="my-trigger"  ng-click="menuTogle($event)" ng-mouseenter="showAll || mouseenter()" ng-mouseleave="showAll || mouseleave()">' +
+					'<a id="triggerMenu" class="fa fa-3x fa-bars" ng-class="{\'active\':showAll}"></a>'+
+					'<nav ng-mouseenter="showAll|| menuHover($event)" class="my-menu-wrapper" ng-class="{\'my-open-part\' : showPart,\'my-open-all\' : showAll}" >'+
+						'<div class="my-scroller">'+
+							'<ul class="my-menu">'+
+								'<li ng-repeat="item in itemsMenu" ng-mouseenter="showChildren = true" ng-mouseleave="showChildren = false" ng-model="showChildren" ng-class="{\'my-submenu-open\': showChildren}" >'+
+									'<a href="{{item.href}}">'+
+										'<i class="icon-menu fa {{item.icon}}"></i>{{ item.name }} <i ng-show="item.children.length>0" class="fa fa-angle-double-down float-right-icon"></i>'+
+									'</a>'+
+									'<ul  ng-show="item.children.length>0" class="my-submenu">'+
+										'<li ng-repeat="item in item.children" class="test">'+
+											'<a href="{{item.href}}"><i class="icon-menu fa {{item.icon}}"></i>{{ item.name }}</a>'+
+										'</li>'+
+									'</ul>'+
+								'</li>'+
+							'</ul>'+
+						'</div>'+
+					'</nav>'+
+				'</li>',
+    replace: true,
+    controller:function(MenuService, $scope) {
+		$scope.itemsMenu = MenuService.itemsMenu;
+		$scope.showAll = MenuService.open.all;
+		$scope.showPart = MenuService.open.part;
 
-			$scope.menuHover = function(event) {
-					MenuService.setShowAll(true);
-			}
+		$scope.mouseenter = function() {
+				MenuService.setShowPart(true);
+		};
 
-			$scope.menuTogle = function(event) {
-				if(event.target.id != "triggerMenu")
-					return;
-				event.stopPropagation();
-				MenuService.setShowAll(!$scope.showAll);
-			};
+		$scope.mouseleave = function() {
+				MenuService.setShowPart(false);
+		};
 
-			$scope.$on('MenuService.update', function(event, open) {
-				$scope.showAll = open.all;
-				$scope.showPart = open.part;
-			});
-		} ])
-		.controller('contentBodyController',[ 'MenuService', '$scope', function(MenuService, $scope) {
-			$scope.isMenuClosed = !MenuService.open.all;
+		$scope.menuHover = function(event) {
+				MenuService.setShowAll(true);
+		}
+		$scope.menuTogle = function(event) {
+			if(event.target.id != "triggerMenu")
+				return;
+			event.stopPropagation();
+			MenuService.setShowAll(!$scope.showAll);
+		};
 
-			$scope.closeMenu = function() {
-				MenuService.setShowAll(false);
-			};
+		$scope.$on('MenuService.update', function(event, open) {
+			$scope.showAll = open.all;
+			$scope.showPart = open.part;
+		});
+		return $scope;
 
-			$scope.$on('MenuService.update', function(event, open) {
-				$scope.isMenuClosed = !open.all;
-			});
-
-		} ]);
+	}
+  };
+});
 
 
 /*
@@ -115,3 +158,6 @@ for(i=0;i < MenuService.itemsMenu.length;i++){
 }
 
 */
+
+
+
