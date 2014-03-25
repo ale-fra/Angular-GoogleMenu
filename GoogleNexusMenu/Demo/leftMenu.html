@@ -1,0 +1,21 @@
+
+<li class="my-trigger"  ng-click="menuTogle($event)" ng-mouseenter="showAll || mouseenter()" ng-mouseleave="showAll || mouseleave()">
+    <a id="triggerMenu" class="fa fa-3x fa-bars" ng-class="{'active':showAll}"></a>
+    <nav ng-mouseenter="showAll|| menuHover($event)" class="my-menu-wrapper" ng-class="{'my-open-part' : showPart,'my-open-all' : showAll}" >
+        <div class="my-scroller">
+            <ul class="my-menu">
+                <li ng-repeat="item in itemsMenu" ng-mouseenter="showChildren = true" ng-mouseleave="showChildren = false" ng-model="showChildren" ng-class="{'my-submenu-open': showChildren}" >
+                    <a href="{{item.href}}">
+                        <i class="icon-menu fa {{item.icon}}"></i>{{ item.name }} <i ng-show="item.children.length>0" class="fa fa-angle-double-down float-right-icon"></i>
+                    </a>
+                    <ul  ng-show="item.children.length>0" class="my-submenu">
+                        <li ng-repeat="item in item.children" class="test">
+                            <a href="{{item.href}}"><i class="icon-menu fa {{item.icon}}"></i>{{ item.name }}</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</li>
+
