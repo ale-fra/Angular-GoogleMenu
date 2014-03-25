@@ -8,49 +8,180 @@
 
 <title>Porting gn-menu to Angularjs</title>
 
-<link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css"/>
+<link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css" />
 <link rel="stylesheet" type="text/css" href="./css/component.css">
 <link rel="stylesheet" type="text/css" href="./css/main.css">
+<link rel="stylesheet" type="text/css" href="./css/scroll-bar-style.css">
+
 </head>
 
 <body>
 	<!-- ========== MAIN MENU ========== -->
-	<header ng-controller="topMenuController"  >
+	<header ng->
 		<ul id="my-menu" class="my-menu-main">
-			<li class="my-trigger"  ng-click="menuTogle($event)" ng-mouseenter="showAll || mouseenter()" ng-mouseleave="showAll || mouseleave()"><a id="triggerMenu" class="fa fa-3x fa-bars" ng-class="{'active':showAll}"></a>
-				 <nav ng-mouseenter="showAll|| menuHover($event)" class="my-menu-wrapper" ng-class="{'my-open-part' : showPart,'my-open-all' : showAll}" >
-					<div class="my-scroller">
-						<ul class="my-menu">
-							<li ng-repeat="item in itemsMenu" ng-mouseenter="showChildren = true" ng-mouseleave="showChildren = false" ng-model="showChildren" ng-class="{'my-submenu-open': showChildren}" >
-							<a href="{{item.href}}"><i class="icon-menu fa {{item.icon}}"></i>{{ item.name }} <i ng-show="item.children.length>0" class="fa fa-angle-double-down float-right-icon"></i> </a>
-							
-							<ul  ng-show="item.children.length>0" class="my-submenu">
-								<li ng-repeat="item in item.children" class="test">
-									<a href="{{item.href}}"><i class="icon-menu fa {{item.icon}}"></i>{{ item.name }}</a>
-								</li>
-							</ul>
-						</ul>
-					</div><!-- /my-scroller -->
-				</nav>
-			</li>
-			
-			<li>Chat</li>
+			<li left-menu></li>
+			<li ng-controller="chatController"><a ng-click="chatSideChangeState()" class="fa fa-comments-o fa-3x"> <span class="chatTitle">Chat</span>
+			</a></li>
 		</ul>
 	</header>
-	<!-- /container -->
-
- 
-	<div class="content-body" ng-controller="contentBodyController" ng-click=" isMenuClosed  || closeMenu() " >
+	<div class="content-body" ng-controller="contentBodyController" ng-click=" isMenuClosed  || closeMenu() ">
 		<div style="height: 100%; width: 100%; background-color: yellow;">
-				<a style="padding-top: 100px; margin-left: 100px;" href="{{href}}" target="_blank">{{text}}</a>
+			<a style="padding-top: 100px; margin-left: 100px;" href="{{href}}" target="_blank">{{text}}</a>
 		</div>
+	</div>
+	<div ng-controller="chatController" class="aside ng-scope right " ng-class="{'closed':chatSide}">
+		<div class="aside-dialog">
+			<div class="aside-content">
+				<div class="aside-header">
+					<button type="button" class="close" ng-click="chatSideChangeState()">×</button>
+					<h4 class="  ">{{title}}</h4>
+				</div>
+				<div class="aside-body">
+					<ul>
+						<li><a href="javascript:void(0)">
+								<div class="single-message row-fluid">
+									<div class="face">
+										<img alt="user image" ng-src="{{userImage}}" class="thumbnail">
+									</div>
+									<div class="message">
+										<p class="well" style="padding: 6px">Messaggio da altro utente, avrà l'immagine del profilo a sinistra, forse anche colorato lo sfondo di un altro colore</p>
+									</div>
+								</div>
+						</a></li><li><a href="javascript:void(0)">
+								<div class="single-message row-fluid">
+									<div class="face">
+										<img alt="user image" ng-src="{{userImage}}" class="thumbnail">
+									</div>
+									<div class="message">
+										<p class="well" style="padding: 6px">Messaggio da altro utente, avrà l'immagine del profilo a sinistra, forse anche colorato lo sfondo di un altro colore</p>
+									</div>
+								</div>
+						</a></li><li><a href="javascript:void(0)">
+								<div class="single-message row-fluid">
+									<div class="face">
+										<img alt="user image" ng-src="{{userImage}}" class="thumbnail">
+									</div>
+									<div class="message">
+										<p class="well" style="padding: 6px">Messaggio da altro utente, avrà l'immagine del profilo a sinistra, forse anche colorato lo sfondo di un altro colore</p>
+									</div>
+								</div>
+						</a></li>
+
+						<li><a href="javascript:void(0)">
+								<div class="single-message row-fluid">
+
+									<div class="message">
+										<p class="well" style="padding: 6px">Messaggio inviato da me, avrà l'immagine a destra!</p>
+									</div>
+									<div class="face">
+										<img alt="user image" ng-src="{{userImage}}" class="thumbnail">
+									</div>
+								</div>
+						</a></li>
+						<li><a href="javascript:void(0)">
+								<div class="single-message row-fluid">
+									<div class="face">
+										<img alt="user image" ng-src="{{userImage}}" class="thumbnail">
+									</div>
+									<div class="message">
+										<p class="well" style="padding: 6px">Messaggio da altro utente, avrà l'immagine del profilo a sinistra, forse anche colorato lo sfondo di un altro colore</p>
+									</div>
+								</div>
+						</a></li>
+
+						<li><a href="javascript:void(0)">
+								<div class="single-message row-fluid">
+
+									<div class="message">
+										<p class="well" style="padding: 6px">Messaggio inviato da me, avrà l'immagine a destra!</p>
+									</div>
+									<div class="face">
+										<img alt="user image" ng-src="{{userImage}}" class="thumbnail">
+									</div>
+								</div>
+						</a></li>
+						<li><a href="javascript:void(0)">
+								<div class="single-message row-fluid">
+									<div class="face">
+										<img alt="user image" ng-src="{{userImage}}" class="thumbnail">
+									</div>
+									<div class="message">
+										<p class="well" style="padding: 6px">Messaggio da altro utente, avrà l'immagine del profilo a sinistra, forse anche colorato lo sfondo di un altro colore</p>
+									</div>
+								</div>
+						</a></li>
+
+						<li><a href="javascript:void(0)">
+								<div class="single-message row-fluid">
+
+									<div class="message">
+										<p class="well" style="padding: 6px">Messaggio inviato da me, avrà l'immagine a destra!</p>
+									</div>
+									<div class="face">
+										<img alt="user image" ng-src="{{userImage}}" class="thumbnail">
+									</div>
+								</div>
+						</a></li>
+						<li><a href="javascript:void(0)">
+								<div class="single-message row-fluid">
+									<div class="face">
+										<img alt="user image" ng-src="{{userImage}}" class="thumbnail">
+									</div>
+									<div class="message">
+										<p class="well" style="padding: 6px">Messaggio da altro utente, avrà l'immagine del profilo a sinistra, forse anche colorato lo sfondo di un altro colore</p>
+									</div>
+								</div>
+						</a></li>
+						<li><a href="javascript:void(0)">
+								<div class="single-message row-fluid">
+
+									<div class="message">
+										<p class="well" style="padding: 6px">Messaggio inviato da me, avrà l'immagine a destra!</p>
+									</div>
+									<div class="face">
+										<img alt="user image" ng-src="{{userImage}}" class="thumbnail">
+									</div>
+								</div>
+						</a></li>
+						<li><a href="javascript:void(0)">
+								<div class="single-message row-fluid">
+									<div class="face">
+										<img alt="user image" ng-src="{{userImage}}" class="thumbnail">
+									</div>
+									<div class="message">
+										<p class="well" style="padding: 6px">Messaggio da altro utente, avrà l'immagine del profilo a sinistra, forse anche colorato lo sfondo di un altro colore</p>
+									</div>
+								</div>
+						</a></li>
+						<li><a href="javascript:void(0)">
+								<div class="single-message row-fluid">
+
+									<div class="message">
+										<p class="well" style="padding: 6px">Messaggio inviato da me, avrà l'immagine a destra!</p>
+									</div>
+									<div class="face">
+										<img alt="user image" ng-src="{{userImage}}" class="thumbnail">
+									</div>
+								</div>
+						</a></li>
+
+					</ul>
+				</div>
+				<div class="aside-footer row-fluid">
+					<div class="input-chat">
+						<input type="text" placeholder=" Write Here...">
+					</div>
+				</div>
+			</div>
+		</div>
+
 	</div>
 
 
 
 	<script src="./angular.min.js"></script>
 	<script src="./app.js"></script>
-	
+
 
 
 </body>
